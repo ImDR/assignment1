@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 const dishRouter = require('./routes/dishRouter');
 const promoRouter = require('./routes/promoRouter');
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
