@@ -8,7 +8,6 @@ dishRouter.route('/')
 })
 .post((req, res)=>{
     res.send(`New dish created with name: ${req.body.name} and description: ${req.body.description}`);
-    res.json(req.body);
 })
 .put((req, res)=>{
     res.status(403).send('PUT operation not supported on /dishes');
