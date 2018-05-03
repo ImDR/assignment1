@@ -21,7 +21,7 @@ dishRouter.route('/:dishId')
     res.send(`Will send details of the dish: ${req.params.dishId} to you.`);
 })
 .post((req, res)=>{
-    res.send(`POST operation not supported on /dishes/${req.params.dishId}`);
+    res.status(403).send(`POST operation not supported on /dishes/${req.params.dishId}`);
 })
 .put((req, res)=>{
     res.write(`Updating the dish: ${req.params.dishId} \n`);

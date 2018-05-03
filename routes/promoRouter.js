@@ -21,7 +21,7 @@ promoRouter.route('/:promoId')
     res.send(`Will send details of the promotion: ${req.params.promoId} to you.`);
 })
 .post((req, res)=>{
-    res.send(`POST operation not supported on /promotions/${req.params.promoId}`);
+    res.status(403).send(`POST operation not supported on /promotions/${req.params.promoId}`);
 })
 .put((req, res)=>{
     res.write(`Updating the promotion: ${req.params.promoId} \n`);

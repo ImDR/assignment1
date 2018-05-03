@@ -21,7 +21,7 @@ leaderRouter.route('/:leaderId')
     res.send(`Will send details of the leader: ${req.params.leaderId} to you.`);
 })
 .post((req, res)=>{
-    res.send(`POST operation not supported on /leaders/${req.params.leaderId}`);
+    res.status(403).send(`POST operation not supported on /leaders/${req.params.leaderId}`);
 })
 .put((req, res)=>{
     res.write(`Updating the leader: ${req.params.leaderId} \n`);
