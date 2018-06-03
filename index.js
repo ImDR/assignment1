@@ -7,6 +7,8 @@ const dishRouter = require('./routes/dishRouter');
 const promoRouter = require('./routes/promoRouter');
 const leaderRouter = require('./routes/leaderRouter');
 
+require('./models');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -17,6 +19,10 @@ app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
 
+app.use(function(err, req, res, next) {
+    if (!err.statusCode) err.statusCode = 500;
+    res.status(err.statusCode).json({status: err.statusCode, error: err.message});
+});
 const server = http.createServer(app).listen(1230, 'localhost', function(){
     const host = server.address().address;
     const port = server.address().port;
