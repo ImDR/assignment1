@@ -20,7 +20,7 @@ promoRouter.route('/')
 .get((req, res, next)=>{
     Promotions.find({})
     .then((promotions) => {
-        res.status(400).json(promotions);
+        res.status(200).json(promotions);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
@@ -33,7 +33,7 @@ promoRouter.route('/')
         description: req.body.description,
         featured: req.body.featured
     }).then((promotion) => {
-        res.status(400).json(promotion);
+        res.status(200).json(promotion);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
@@ -48,23 +48,23 @@ promoRouter.route('/:promoId')
 .get((req, res, next)=>{
     Promotions.findById(req.params.promoId)
     .then((promotion) => {
-        res.status(400).json(promotion);
+        res.status(200).json(promotion);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
 .post((req, res)=>{
     res.status(403).send(`POST operation not supported on /promotions/${req.params.promoId}`);
 })
-.put((req, res)=>{
+.put((req, res,next)=>{
     Promotions.findByIdAndUpdate(req.params.promoId, {
         $set: req.body
     }, { new: true })
     .then((promotion) => {
         res.status(200).json(promotion);
     }, (err) => next(err))
-    .catch((err) => next(err));;
+    .catch((err) => next(err));
 })
-.delete((req, res)=>{
+.delete((req, res,next)=>{
     Promotions.findByIdAndRemove(req.params.promoId)
     .then((promotion) => {
         res.status(200).json(promotion);

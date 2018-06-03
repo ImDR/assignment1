@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-//const Dishes = require('./dishes');
-
 const url = 'mongodb://localhost:27017/coursera';
 
 const connect = mongoose.connect(url);
